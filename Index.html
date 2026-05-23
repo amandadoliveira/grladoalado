@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GR Lado a Lado</title>
+    <link rel="stylesheet" href="Estilo.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left-column">
+            <h1>GR Lado a Lado</h1>
+            <img src="C:\Users\Amanda Tameirao\Downloads\GR Lado a Lado.png" alt="Igreja A Ponte BH">
+        </div>
+        <div class="right-column">
+            <h2>Cadastre-se</h2>
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome" required>
+                    <div class="error" id="nomeError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="aniversario">Aniversário</label>
+                    <input type="date" id="aniversario" name="aniversario" required>
+                    <div class="error" id="aniversarioError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" required>
+                    <div class="error" id="telefoneError"></div>
+                </div>
+                <button type="submit">Enviar</button>
+            </form>
+            <div class="success-message" id="successMessage">Cadastro realizado com sucesso!</div>
+        </div>
+    </div>
+    <script>
+        const form = document.getElementById('registrationForm');
+        const successMessage = document.getElementById('successMessage');
+
+        // Máscara de telefone
+        document.getElementById('telefone').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.slice(0, 11);
+            if (value.length > 2) {
+                value = '(' + value.slice(0, 2) + ') ' + value.slice(2);
+            }
+            if (value.length > 10) {
+                value = value.slice(0, 10) + '-' + value.slice(10);
+            }
+            e.target.value = value;
+        });
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            let valid = true;
+
+            // Limpar erros
+            document.querySelectorAll('.error').forEach(el => el.textContent = '');
+
+            const nome = document.getElementById('nome').value.trim();
+            const aniversario = document.getElementById('aniversario').value;
+            const telefone = document.getElementById('telefone').value.replace(/\D/g, '');
+
+            if (!nome) {
+                document.getElementById('nomeError').textContent = 'Nome é obrigatório.';
+                valid = false;
+            }
+
+            if (!aniversario) {
+                document.getElementById('aniversarioError').textContent = 'Aniversário é obrigatório.';
+                valid = false;
+            }
+
+            if (telefone.length !== 11) {
+                document.getElementById('telefoneError').textContent = 'Telefone deve ter 11 dígitos (DDD + número).';
+                valid = false;
+            }
+
+            if (!valid) return;
+
+            // Enviar para webhook
+            const payload = {
+                nome: nome,
+                aniversario: aniversario,
+                telefone: document.getElementById('telefone').value
+            };
+
+            fetch('https://script.google.com/macros/d/AKfycbxWHqccSYT0OWIfxNCq9V5BzZVtJjo860JdXl4-Qx_GgD98fBM1r5DcI8hLu-pjjK6p/usercontent/do', {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                successMessage.style.display = 'block';
+                form.reset();
+            })
+            .catch((error) => {
+                alert('Erro ao enviar: ' + error.message);
+            });
+        });
+    </script>
+</body>
+</html>
