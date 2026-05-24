@@ -48,8 +48,8 @@ form.addEventListener('submit', function (e) {
         aniversario: aniversario,
         telefone: document.getElementById('telefone').value
     };
-
-    fetch('https://script.google.com/macros/d/AKfycbxWHqccSYT0OWIfxNCq9V5BzZVtJjo860JdXl4-Qx_GgD98fBM1r5DcI8hLu-pjjK6p/usercontent/do', {
+    
+    fetch('https://script.google.com/macros/d/AKfycbwNkQSY-UKsYMizLolLO4IVjmc0aasEyGBIn-YGj195GDeB18AFRphXE5RdJSX-8kJQ/usercontent/do', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
