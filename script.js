@@ -75,7 +75,7 @@ form.addEventListener('submit', function (e) {
 
     const nome = document.getElementById('nome').value.trim();
     const aniversario = document.getElementById('aniversario').value;
-    const aniversario = document.getElementById('email').value;
+    const email = document.getElementById('email').value;
     const telefone = document.getElementById('telefone').value.replace(/\D/g, '');
 
     if (!nome) {
