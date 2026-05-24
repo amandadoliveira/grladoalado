@@ -122,9 +122,3 @@ button:hover {
         font-size: 2rem;
     }
 }
-.input-aniversario::-webkit-datetime-edit-year-field {
-    display: none;
-}
-.input-aniversario::-webkit-datetime-edit-text {
-    display: none;
-}
