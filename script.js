@@ -107,7 +107,8 @@ form.addEventListener('submit', function (e) {
     const payload = {
         nome: nome,
         aniversario: aniversario,
-        telefone: document.getElementById('telefone').value
+        telefone: document.getElementById('telefone').value,
+        email: email
     };
     
     fetch('https://script.google.com/macros/s/AKfycbyVAxTp-tK0AXznLVtqKqKfIwAqVEfQaiteZH1Dr7z03aAExVYHy4FRPCxycn6qV_9K/exec', {
