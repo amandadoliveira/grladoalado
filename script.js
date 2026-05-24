@@ -110,7 +110,7 @@ form.addEventListener('submit', function (e) {
         telefone: document.getElementById('telefone').value
     };
     
-    fetch('https://script.google.com/macros/s/AKfycbxRuCMvMjXgJD-61yNFxNDwFw9ed20cCoHrQweI6nfk9a089fYceDZBXaLmtF-tbMwI/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbyVAxTp-tK0AXznLVtqKqKfIwAqVEfQaiteZH1Dr7z03aAExVYHy4FRPCxycn6qV_9K/exec', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
