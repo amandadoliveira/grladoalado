@@ -14,6 +14,44 @@ document.getElementById('telefone').addEventListener('input', function (e) {
     e.target.value = value;
 });
 
+function validarData(data) {
+  const regex = /^(\d{2})\/(\d{2})$/;
+  const match = data.match(regex);
+  if (!match) {
+    console.error("Formato inválido. Use DD/MM.");
+    alert("Formato inválido. Use DD/MM.");
+    return false;
+  }
+  const mes = parseInt(match[2]);
+  if (mes < 1 || mes > 12) {
+    console.error("Mês inválido. Deve ser de 01 até 12.");
+    alert("Mês inválido. Deve ser de 01 até 12.");
+    return false;
+  }
+  const dia = parseInt(match[1]);
+  if (dia < 1) {
+    console.error("Dia inválido.");
+    alert("Dia inválido.");
+    return false;
+  }  
+  if (mes == 2 && dia > 29) {
+    console.error("Dia inválido. Deve ser de 01 até 29");
+    alert("Dia inválido. Deve ser de 01 até 29");
+    return false;   
+  }
+  if ((mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) && dia > 31) {
+    console.error("Dia inválido. Deve ser de 01 até 31");
+    alert("Dia inválido. Deve ser de 01 até 31");
+    return false;   
+  }
+  if (dia > 30) {
+      console.error("Dia inválido. Deve ser de 01 até 30");
+      alert("Dia inválido. Deve ser de 01 até 30");
+      return false;   
+  }  
+  return true;
+}
+
 form.addEventListener('submit', function (e) {
     e.preventDefault();
     let valid = true;
