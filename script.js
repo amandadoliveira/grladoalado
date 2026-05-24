@@ -75,6 +75,7 @@ form.addEventListener('submit', function (e) {
 
     const nome = document.getElementById('nome').value.trim();
     const aniversario = document.getElementById('aniversario').value;
+    const aniversario = document.getElementById('email').value;
     const telefone = document.getElementById('telefone').value.replace(/\D/g, '');
 
     if (!nome) {
@@ -92,6 +93,11 @@ form.addEventListener('submit', function (e) {
 
     if (telefone.length !== 11) {
         document.getElementById('telefoneError').textContent = 'Telefone deve ter 11 dígitos (DDD + número).';
+        valid = false;
+    }
+
+    if (!email) {
+        document.getElementById('emailError').textContent = 'E-mail é obrigatório.';
         valid = false;
     }
 
