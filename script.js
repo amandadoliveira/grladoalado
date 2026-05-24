@@ -49,7 +49,7 @@ form.addEventListener('submit', function (e) {
         telefone: document.getElementById('telefone').value
     };
     
-    fetch('https://script.google.com/macros/s/AKfycbxUc7967K7CV9L8gyOfKajB3q4Hz_7RWTDl_CGHRlWHt5HIgeZXYL9Q6gR8pJMqFP5X/exec', {
+    fetch('https://script.google.com/macros/d/AKfycbxUc7967K7CV9L8gyOfKajB3q4Hz_7RWTDl_CGHRlWHt5HIgeZXYL9Q6gR8pJMqFP5X/usercontent/do', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
