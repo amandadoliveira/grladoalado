@@ -14,6 +14,20 @@ document.getElementById('telefone').addEventListener('input', function (e) {
     e.target.value = value;
 });
 
+// Máscara de aniversário (DD/MM)
+document.getElementById('aniversario').addEventListener('input', function (e) {
+  let value = e.target.value.replace(/\D/g, ''); // Remove tudo que não é número
+  
+  if (value.length > 4) value = value.slice(0, 4); // Máximo 4 dígitos
+  
+  if (value.length >= 2) {
+    value = value.slice(0, 2) + '/' + value.slice(2);
+  }
+  
+  e.target.value = value;
+});
+
+//Validação para data
 function validarData(data) {
   const regex = /^(\d{2})\/(\d{2})$/;
   const match = data.match(regex);
@@ -69,8 +83,11 @@ form.addEventListener('submit', function (e) {
     }
 
     if (!aniversario) {
-        document.getElementById('aniversarioError').textContent = 'Aniversário é obrigatório.';
-        valid = false;
+      document.getElementById('aniversarioError').textContent = 'Aniversário é obrigatório.';
+      valid = false;
+    } else if (!validarData(aniversario)) {
+      document.getElementById('aniversarioError').textContent = 'Data inválida. Use DD/MM.';
+      valid = false;
     }
 
     if (telefone.length !== 11) {
